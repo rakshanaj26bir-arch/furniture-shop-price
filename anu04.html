@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniCraft Home | Vibrant 3D Miniature Furniture Store</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #ff477e;
+      --tangerine: #ff9f1c;
+      --electric-blue: #00bbf9;
+      --royal-violet: #7209b7;
+      --mint: #06d6a0;
+      --ink: #18182f;
+      --bg-cream: #fffcf7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg-cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* Sticky Glass Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(14px);
+      padding: 1rem 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 6px 25px rgba(114, 9, 183, 0.08);
+    }
+
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--coral), var(--royal-violet), var(--electric-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      margin-left: 1.8rem;
+      transition: color 0.25s;
+    }
+
+    nav a:hover {
+      color: var(--coral);
+    }
+
+    /* Vibrant Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #ff477e 0%, #ff9f1c 50%, #7209b7 100%);
+      color: #ffffff;
+      padding: 4.5rem 6% 5.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      border-bottom-left-radius: 56px;
+      border-bottom-right-radius: 56px;
+      position: relative;
+    }
+
+    .hero-content {
+      flex: 1 1 460px;
+    }
+
+    .pill-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.22);
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-content h1 {
+      font-size: 3.1rem;
+      line-height: 1.15;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.08rem;
+      opacity: 0.95;
+      margin-bottom: 2rem;
+      max-width: 510px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: #ffffff;
+      color: var(--royal-violet);
+      padding: 0.95rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+      transition: transform 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-4px);
+    }
+
+    /* Hero Isometric Miniature Diorama Stage */
+    .hero-stage {
+      flex: 1 1 380px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .diorama-box {
+      background: rgba(255, 255, 255, 0.16);
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      border-radius: 36px;
+      padding: 1.8rem;
+      box-shadow: 0 25px 55px rgba(24, 24, 47, 0.28);
+      animation: floatMini 4s ease-in-out infinite;
+    }
+
+    @keyframes floatMini {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Catalog Grid */
+    .catalog {
+      padding: 5rem 6%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .section-header h2 span {
+      background: linear-gradient(90deg, var(--coral), var(--royal-violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-header p {
+      color: #5a5a72;
+      margin-top: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 14px 35px rgba(24, 24, 47, 0.08);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 22px 48px rgba(255, 71, 126, 0.22);
+    }
+
+    /* Miniature Studio Display Box */
+    .miniature-stage {
+      position: relative;
+      height: 245px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+      overflow: hidden;
+    }
+
+    .stage-pink { background: radial-gradient(circle at center, #fff0f5 0%, #ffd6e5 100%); }
+    .stage-cyan { background: radial-gradient(circle at center, #eefaff 0%, #c7f0ff 100%); }
+    .stage-amber { background: radial-gradient(circle at center, #fff9ec 0%, #ffe4b5 100%); }
+    .stage-violet { background: radial-gradient(circle at center, #f6efff 0%, #e0caff 100%); }
+
+    .miniature-stage svg {
+      width: 195px;
+      height: 195px;
+      filter: drop-shadow(0 18px 18px rgba(24, 24, 47, 0.22));
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover .miniature-stage svg {
+      transform: scale(1.09) translateY(-5px);
+    }
+
+    /* Vibrant Price Tag */
+    .price-tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: linear-gradient(135deg, var(--coral), var(--tangerine));
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 0.45rem 1.05rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 20px rgba(255, 71, 126, 0.4);
+      z-index: 2;
+    }
+
+    .room-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      background: rgba(24, 24, 47, 0.82);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.32rem 0.85rem;
+      border-radius: 20px;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-body p {
+      font-size: 0.9rem;
+      color: #64647a;
+      line-height: 1.5;
+      margin-bottom: 1.4rem;
+    }
+
+    .select-btn {
+      width: 100%;
+      padding: 0.85rem;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--royal-violet), var(--electric-blue));
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.25s;
+    }
+
+    .select-btn:hover {
+      opacity: 0.93;
+      transform: scale(1.02);
+    }
+
+    /* Registration & Booking Section */
+    .booking-wrapper {
+      padding: 5rem 6%;
+      background: linear-gradient(135deg, #18182f 0%, #3a0ca3 55%, #7209b7 100%);
+      color: #ffffff;
+      border-top-left-radius: 56px;
+      border-top-right-radius: 56px;
+    }
+
+    .form-card {
+      max-width: 820px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.11);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 32px;
+      padding: 3rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .form-card h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-card > p {
+      text-align: center;
+      color: #e4dcff;
+      margin-bottom: 2.2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffd166;
+      margin-bottom: 0.45rem;
+    }
+
+    input, select, textarea {
+      padding: 0.88rem 1rem;
+      border-radius: 13px;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--tangerine);
+    }
+
+    .submit-btn {
+      margin-top: 1.8rem;
+      width: 100%;
+      padding: 1.05rem;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(90deg, var(--tangerine), var(--coral));
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(255, 71, 126, 0.42);
+      transition: transform 0.25s;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .success-banner {
+      display: none;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 14px;
+      background: var(--mint);
+      color: #063b2d;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    footer {
+      background: #101022;
+      color: #a5a5c0;
+      text-align: center;
+      padding: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero-content h1 { font-size: 2.3rem; }
+      .form-card { padding: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">MiniCraft Home</div>
+    <nav>
+      <a href="#catalog">3D Catalog</a>
+      <a href="#register">Book Furniture</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="pill-badge">✨ 2026 Isometric Miniature Collection</div>
+      <h1>Dream Furniture in Crisp 3D Detail</h1>
+      <p>Inspect every handcrafted curve on our miniature studio pedestals, check transparent price tags, and register online to reserve your pieces.</p>
+      <a href="#catalog" class="cta-btn">Browse Miniature Catalog ↓</a>
+    </div>
+
+    <!-- Hero 3D Miniature Room Diorama SVG -->
+    <div class="hero-stage">
+      <div class="diorama-box">
+        <svg width="260" height="230" viewBox="0 0 260 230" xmlns="http://w3.org">
+          <!-- Isometric Floor Base -->
+          <polygon points="130,210 245,150 130,90 15,150" fill="#ffe5ec" />
+          <polygon points="15,150 130,210 130,224 15,164" fill="#ff8fab" />
+          <polygon points="245,150 130,210 130,224 245,164" fill="#fb6f92" />
+          <!-- Left Wall -->
+          <polygon points="15,150 130,90 130,15 15,75" fill="#fff0f3" />
+          <!-- Right Wall -->
+          <polygon points="245,150 130,90 130,15 245,75" fill="#ffd6e0" />
+          <!-- Miniature Rug -->
+          <polygon points="130,188 195,154 130,120 65,154" fill="#00bbf9" opacity="0.85" />
+          <!-- Miniature Sofa -->
+          <polygon points="85,135 135,109 152,118 102,144" fill="#7209b7" />
+          <polygon points="73,115 123,89 135,109 85,135" fill="#9d4edd" />
+          <polygon points="85,135 102,144 102,156 85,147" fill="#560bad" />
+          <polygon points="102,144 152,118 152,130 102,156" fill="#3c096c" />
+          <!-- Miniature Coffee Table -->
+          <polygon points="145,162 175,146 190,154 160,170" fill="#ff9f1c" />
+          <polygon points="145,162 160,170 160,178 145,170" fill="#e85d04" />
+          <polygon points="160,170 190,154 190,162 160,178" fill="#dc2f02" />
+          <!-- Potted Plant -->
+          <ellipse cx="195" cy="118" rx="10" ry="6" fill="#ffbe0b" />
+          <circle cx="195" cy="105" r="12" fill="#06d6a0" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Miniature Furniture Catalog with Price Tags -->
+  <section class="catalog" id="catalog">
+    <div class="section-header">
+      <h2>3D Miniature <span>Furniture</span> Showcase</h2>
+      <p>Click "Select & Book" on any miniature piece to auto-fill your reservation form.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Product 1: Miniature Plush Sofa -->
+      <div class="card">
+        <div class="miniature-stage stage-pink">
+          <span class="price-tag">₹38,999</span>
+          <span class="room-tag">Living Room</span>
+          <svg viewBox="0 0 220 200" xmlns="http://w3.org">
+            <!-- Pedestal Base -->
+            <polygon points="110,180 200,135 110,90 20,135" fill="#ffffff" />
+            <polygon points="20,135 110,180 110,190 20,145" fill="#f8ad9d" />
+            <polygon points="200,135 110,180 110,190 200,145" fill="#f08080" />
+            <!-- Sofa Backrest -->
+            <polygon points="52,98 132,58 148,66 68,106" fill="#ff477e" />
+            <polygon points="52,98 68,106 68,136 52,128" fill="#c9184a" />
+            <!-- Sofa Seat Cushions -->
+            <polygon points="68,118 148,78 172,90 92,130" fill="#ff758f" />
+            <polygon points="68,118 92,130 92,145 68,133" fill="#a4133c" />
+            <polygon points="92,130 172,90 172,105 92,145" fill="#800f2f" />
+            <!-- Armrests -->
+            <polygon points="50,112 68,103 92,115 74,124" fill="#ff8fa3" />
+            <polygon points="132,71 150,62 174,74 156,83" fill="#ff8fa3" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Coral Cloud 3-Seater Sofa</h3>
+            <p>Plush velvet miniature-crafted 3-seater with deep foam cushions and solid oak legs.</p>
+          </div>
+          <button class="select-btn" onclick="pickItem('Coral Cloud 3-Seater Sofa - ₹38,999')">Select & Book</button>
+        </div>
+      </div>
+
+      <!-- Product 2: Miniature Wingback Armchair -->
+      <div class="card">
+        <div class="miniature-stage stage-cyan">
+          <span class="price-tag">₹15,499</span>
+          <span class="room-tag">Accent Chair</span>
+          <svg viewBox="0 0 220 200" xmlns="http://w3.org">
+            <!-- Pedestal -->
+            <polygon points="110,180 195,138 110,95 25,138" fill="#ffffff" />
+            <polygon points="25,138 110,180 110,190 25,148" fill="#90e0ef" />
+            <polygon points="195,138 110,180 110,190 195,148" fill="#48cae4" />
+            <!-- Chair Back -->
+            <polygon points="75,78 118,56 128,62 85,84" fill="#00bbf9" />
+            <polygon points="75,78 85,84 85,128 75,122" fill="#0077b6" />
+            <!-- Seat Cushion -->
+            <polygon points="85,112 128,90 152,102 109,124" fill="#4cc9f0" />
+            <polygon points="85,112 109,124 109,138 85,126" fill="#023e8a" />
+            <polygon points="109,124 152,102 152,116 109,138" fill="#03045e" />
+            <!-- Wooden Legs -->
+            <rect x="88" y="128" width="5" height="16" fill="#d4a373" />
+            <rect x="108" y="138" width="5" height="16" fill="#d4a373" />
+            <rect x="145" y="118" width="5" height="16" fill="#d4a373" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Aqua Pod Lounge Armchair</h3>
+            <p>Ergonomic curved wingback shell in stain-resistant sky-blue weave with beech legs.</p>
+          </div>
+          <button class="select-btn" onclick="pickItem('Aqua Pod Lounge Armchair - ₹15,499')">Select & Book</button>
+        </div>
+      </div>
+
+      <!-- Product 3: Miniature Dining Table Set -->
+      <div class="card">
+        <div class="miniature-stage stage-amber">
+          <span class="price-tag">₹32,999</span>
+          <span class="room-tag">Dining Room</span>
+          <svg viewBox="0 0 220 200" xmlns="http://w3.org">
+            <!-- Pedestal -->
+            <polygon points="110,180 200,135 110,90 20,135" fill="#ffffff" />
+            <polygon points="20,135 110,180 110,190 20,145" fill="#ffd166" />
+            <polygon points="200,135 110,180 110,190 200,145" fill="#f4a261" />
+            <!-- Table Legs -->
+            <rect x="75" y="112" width="6" height="32" fill="#9c6644" />
+            <rect x="110" y="128" width="6" height="32" fill="#7f5539" />
+            <rect x="148" y="110" width="6" height="32" fill="#7f5539" />
+            <!-- Table Top -->
+            <polygon points="110,75 165,102 110,130 55,102" fill="#ff9f1c" />
+            <polygon points="55,102 110,130 110,138 55,110" fill="#e85d04" />
+            <polygon points="165,102 110,130 110,138 165,110" fill="#dc2f02" />
+            <!-- Miniature Centerpiece Bowl -->
+            <ellipse cx="110" cy="101" rx="14" ry="7" fill="#06d6a0" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Amber Teak 4-Seater Dining Set</h3>
+            <p>Solid seasoned teakwood dining table paired with four cushioned minimalist chairs.</p>
+          </div>
+          <button class="select-btn" onclick="pickItem('Amber Teak 4-Seater Dining Set - ₹32,999')">Select & Book</button>
+        </div>
+      </div>
+
+      <!-- Product 4: Miniature Queen Bed -->
+      <div class="card">
+        <div class="miniature-stage stage-violet">
+          <span class="price-tag">₹44,500</span>
+          <span class="room-tag">Bedroom</span>
+          <svg viewBox="0 0 220 200" xmlns="http://w3.org">
+            <!-- Pedestal -->
+            <polygon points="110,182 202,136 110,90 18,136" fill="#ffffff" />
+            <polygon points="18,136 110,182 110,192 18,146" fill="#c77dff" />
+            <polygon points="202,136 110,182 110,192 202,146" fill="#9d4edd" />
+            <!-- Headboard -->
+            <polygon points="52,92 118,59 126,63 60,96" fill="#5a189a" />
+            <polygon points="52,92 60,96 60,128 52,124" fill="#3c096c" />
+            <!-- Mattress & Duvet -->
+            <polygon points="60,104 126,71 174,95 108,128" fill="#f8f9fa" />
+            <polygon points="84,92 126,71 174,95 132,116" fill="#7209b7" />
+            <polygon points="60,104 108,128 108,142 60,118" fill="#dee2e6" />
+            <polygon points="108,128 174,95 174,109 108,142" fill="#560bad" />
+            <!-- Two Miniature Pillows -->
+            <polygon points="68,100 88,90 98,95 78,105" fill="#ffd166" />
+            <polygon points="94,87 114,77 124,82 104,92" fill="#ffd166" />
+          </svg>
+        </div>
+        <div class="card-body">
+          <div>
+            <h3>Royal Violet Queen Platform Bed</h3>
+            <p>Upholstered tufted headboard with hydraulic storage box and orthopedically slatted base.</p>
+          </div>
+          <button class="select-btn" onclick="pickItem('Royal Violet Queen Platform Bed - ₹44,500')">Select & Book</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Registration & Furniture Booking Form -->
+  <section class="booking-wrapper" id="register">
+    <div class="form-card">
+      <h2>Customer Registration & Furniture Booking</h2>
+      <p>Fill out your details below to register your account and reserve your chosen furniture.</p>
+
+      <form id="bookingForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="custName">Full Name *</label>
+            <input type="text" id="custName" placeholder="e.g., Priya Nair" required />
+          </div>
+
+          <div class="field">
+            <label for="custEmail">Email Address *</label>
+            <input type="email" id="custEmail" placeholder="priya@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="custPhone">Mobile Number *</label>
+            <input type="tel" id="custPhone" placeholder="+91 98765 43210" required />
+          </div>
+
+          <div class="field">
+            <label for="selectedFurniture">Selected Furniture *</label>
+            <select id="selectedFurniture" required>
+              <option value="">-- Select a Furniture Item --</option>
+              <option value="Coral Cloud 3-Seater Sofa - ₹38,999">Coral Cloud 3-Seater Sofa — ₹38,999</option>
+              <option value="Aqua Pod Lounge Armchair - ₹15,499">Aqua Pod Lounge Armchair — ₹15,499</option>
+              <option value="Amber Teak 4-Seater Dining Set - ₹32,999">Amber Teak 4-Seater Dining Set — ₹32,999</option>
+              <option value="Royal Violet Queen Platform Bed - ₹44,500">Royal Violet Queen Platform Bed — ₹44,500</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="qty">Quantity *</label>
+            <input type="number" id="qty" min="1" max="10" value="1" required />
+          </div>
+
+          <div class="field">
+            <label for="deliveryDate">Preferred Delivery Date *</label>
+            <input type="date" id="deliveryDate" required />
+          </div>
+
+          <div class="field full">
+            <label for="address">Full Delivery Address *</label>
+            <textarea id="address" rows="3" placeholder="Door No., Street Name, City, State, PIN Code" required></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Register & Confirm Booking</button>
+        <div class="success-banner" id="successBanner"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 MiniCraft Home Furniture Studio. All Rights Reserved.
+  </footer>
+
+  <script>
+    function pickItem(furnitureLabel) {
+      document.getElementById('selectedFurniture').value = furnitureLabel;
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('custName').value;
+      const item = document.getElementById('selectedFurniture').value;
+      const qty = document.getElementById('qty').value;
+      const date = document.getElementById('deliveryDate').value;
+
+      const banner = document.getElementById('successBanner');
+      banner.style.display = 'block';
+      banner.innerHTML = `🎉 Registration Complete, ${name}! Your booking for ${qty}x "${item}" is scheduled for ${date}.`;
+      this.reset();
+    });
+  </script>
+</body>
+</html>
+
